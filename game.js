@@ -69,6 +69,34 @@ function updateBall() {
     b.dy = -b.dy;
     playSound( ballBounceSound );
   }
+
+  checkPaddleCollision();
+}
+
+const MAX_BOUNCE_ANGLE = ( 75 * Math.PI ) / 180;
+
+function checkPaddleCollision() {
+  const b = state.ball;
+  const p = state.paddle;
+
+  const hitsPaddle = b.dy > 0 &&
+    b.y + b.radius >= p.y &&
+    b.y + b.radius <= p.y + p.height &&
+    b.x + b.radius >= p.x &&
+    b.x - b.radius <= p.x + p.width;
+
+  if ( !hitsPaddle ) return;
+
+  const paddleCenter = p.x + p.width / 2;
+  const relativeImpact = ( b.x - paddleCenter ) / ( p.width / 2 ); // -1 .. 1
+  const clamped = Math.max( -1, Math.min( 1, relativeImpact ) );
+  const angle = clamped * MAX_BOUNCE_ANGLE;
+
+  b.dx = b.speed * Math.sin( angle );
+  b.dy = -b.speed * Math.cos( angle );
+  b.y = p.y - b.radius;
+
+  playSound( ballBounceSound );
 }
 
 function draw() {
