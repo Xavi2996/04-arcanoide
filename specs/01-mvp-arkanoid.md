@@ -1,6 +1,6 @@
 # SPEC 01 — MVP jugable de Arkanoid
 
-> **Estado:** Borrador
+> **Estado:** aprobado
 > **Depende de:** Ninguna
 > **Fecha:** 2026-09-10
 > **Objetivo:** Construir un MVP jugable de Arkanoid de un solo nivel, con paleta controlada por teclado, sistema de vidas, puntaje y sonido, sin persistencia entre sesiones.
@@ -35,7 +35,7 @@
 ```js
 // Estado del juego, vive en memoria (sin persistencia)
 const state = {
-  screen: 'start', // 'start' | 'playing' | 'paused' | 'win' | 'gameover'
+  screen: "start", // 'start' | 'playing' | 'paused' | 'win' | 'gameover'
   score: 0,
   lives: 3,
   paddle: { x: 319, y: 570, width: 162, height: 14, speed: 7 }, // px/frame
