@@ -1,6 +1,6 @@
 # SPEC 02 — Duración de la animación de explosión de bloques
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-09-10
 > **Objetivo:** Alargar la duración de la animación de explosión al destruir un bloque, de 150ms a 350ms, sin modificar `assets/spritesheet.js`.

@@ -58,6 +58,7 @@ function playSound( audio ) {
 }
 
 const explosions = []; // { x, y, width, height, color, startTime }
+const BLOCK_EXPLOSION_DURATION = 350; // ms — reemplaza EXPLOSION_DURATION (definida en spritesheet.js) para no modificar ese archivo
 
 const keys = { left: false, right: false };
 
@@ -216,7 +217,7 @@ function checkWinCondition() {
 function updateExplosions() {
   const now = performance.now();
   for ( let i = explosions.length - 1; i >= 0; i-- ) {
-    if ( now - explosions[ i ].startTime >= EXPLOSION_DURATION ) {
+    if ( now - explosions[ i ].startTime >= BLOCK_EXPLOSION_DURATION ) {
       explosions.splice( i, 1 );
     }
   }
@@ -265,7 +266,7 @@ function draw() {
   const now = performance.now();
   for ( const explosion of explosions ) {
     const frames = EXPLOSION_FRAMES[ explosion.color ];
-    const frameDuration = EXPLOSION_DURATION / frames.length;
+    const frameDuration = BLOCK_EXPLOSION_DURATION / frames.length;
     const frameIndex = Math.min( frames.length - 1, Math.floor( ( now - explosion.startTime ) / frameDuration ) );
     drawFrame( ctx, frames[ frameIndex ], explosion.x, explosion.y, explosion.width, explosion.height );
   }
